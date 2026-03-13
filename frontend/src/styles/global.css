@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap');
+
+:root {
+  --red: #c0392b;
+  --deep-red: #7b241c;
+  --crimson: #e74c3c;
+  --ink: #1a0a08;
+  --parchment: #f5f0e8;
+  --warm-white: #faf8f4;
+  --mid: #8b7355;
+  --gold: #c9a84c;
+  --light-red: #fdecea;
+  --border: #e8e0d5;
+  --shadow: rgba(192, 57, 43, 0.12);
+
+  /* Glass tokens */
+  --glass-bg: rgba(255,255,255,0.55);
+  --glass-bg-strong: rgba(255,255,255,0.72);
+  --glass-border: rgba(255,255,255,0.45);
+  --glass-shadow: 0 8px 32px rgba(60,10,5,0.13), 0 1.5px 6px rgba(192,57,43,0.07);
+  --glass-blur: blur(16px);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  /* Warm textured gradient background */
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(192,57,43,0.09) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 75%, rgba(201,168,76,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(245,240,232,1) 0%, #ede8de 100%);
+  background-attachment: fixed;
+  color: var(--ink);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--red); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button { cursor: pointer; font-family: inherit; }
+input, select, textarea { font-family: 'Source Serif 4', serif; outline: none; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--parchment); }
+::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
+
+/* Utility */
+.mono { font-family: 'IBM Plex Mono', monospace; }
+.serif-display { font-family: 'Playfair Display', serif; }
+
+/* Glass mixin util */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+/* React Calendar overrides */
+.react-calendar {
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-size: 0.78rem !important;
+  background: var(--glass-bg-strong) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  width: 100% !important;
+  max-width: 340px !important;
+  padding: 8px !important;
+  box-shadow: var(--glass-shadow) !important;
+}
+
+.react-calendar__tile--active { background: var(--red) !important; color: white !important; border-radius: 6px !important; }
+.react-calendar__tile:hover { background: var(--light-red) !important; border-radius: 6px !important; }
+.react-calendar__navigation button:hover { background: var(--light-red) !important; border-radius: 6px !important; }
+
+.react-calendar__tile.has-news {
+  background: rgba(192,57,43,0.08) !important;
+  font-weight: 600 !important;
+  color: var(--red) !important;
+  border-radius: 6px !important;
+  position: relative;
+}
+
+.react-calendar__tile.has-news::after {
+  content: '•';
+  position: absolute;
+  bottom: 2px; left: 50%;
+  transform: translateX(-50%);
+  color: var(--red);
+  font-size: 10px; line-height: 1;
+}

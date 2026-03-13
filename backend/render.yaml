@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: red-lens-backend
+    env: python
+    region: singapore
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: red-lens-db
+          property: connectionString
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: FLASK_ENV
+        value: production
+      - key: DISABLE_SCHEDULER
+        value: false
+
+databases:
+  - name: red-lens-db
+    databaseName: red_lens
+    user: red_lens_user
+    plan: free
+    region: singapore

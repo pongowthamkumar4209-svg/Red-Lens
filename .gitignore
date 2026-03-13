@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+venv/
+.env
+*.db
+*.sqlite3
+node_modules/
+dist/
+.env.local
+.env.production
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp
